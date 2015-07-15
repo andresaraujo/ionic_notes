@@ -1,0 +1,44 @@
+<ion-view view-title="User">
+    <ion-content style="background: #e8ebf1;" class="">
+
+        <div class="mdl-grid">
+            <div class="center">
+
+                <div class="mdl-cell mdl-cell--12-col ">
+                    <div class="mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__supporting-text">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width">
+                                <input class="mdl-textfield__input" type="text" id="title"
+                                        ng-model="vm.newTitle" ng-focus="vm.showAll=true"/>
+                                <label class="mdl-textfield__label" for="title">Title</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-width" ng-hide="!vm.showAll">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="note"
+                                        ng-model="vm.newContent"></textarea>
+                                <label class="mdl-textfield__label" for="note">Add note</label>
+                            </div>
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border" ng-hide="!vm.showAll">
+                            <div class="mdl-layout-spacer"></div>
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                                    ng-click="vm.enterNote()">
+                                DONE
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mdl-grid">
+            <div class="mdl-cell" ng-repeat="note in vm.notes">
+                <notes-card title="{{note.title}}" content="{{note.content}}" edit="vm.selectedNote == note"
+                            ng-click="vm.selectNote(note)" onsave="vm.doneEditing(target)"
+                            ondelete="vm.deleteMe(note)"></notes-card>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
