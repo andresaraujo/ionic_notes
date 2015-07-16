@@ -17,7 +17,7 @@ var paths = {
   useref: ['./www/*.html']
 };
 
-gulp.task('default', ['sass', 'templatecache', 'ng_annotate', 'useref']);
+gulp.task('default', ['useref']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -37,12 +37,12 @@ gulp.task('sass', function(done) {
 gulp.task('templatecache', function (done) {
   gulp.src('./www/app/**/*.html')
       .pipe(templateCache({standalone:true}))
-      .pipe(gulp.dest('./www/js'))
+      .pipe(gulp.dest('./www/dist'))
       .on('end', done);
 });
 
 /** Add injections using "@ngInject" **/
-gulp.task('ng_annotate', function (done) {
+gulp.task('ng_annotate', ['templatecache'], function (done) {
   gulp.src('./www/app/**/*.js')
       .pipe(ngAnnotate({single_quotes: true}))
       .pipe(gulp.dest('./www/dist/app'))
@@ -50,7 +50,7 @@ gulp.task('ng_annotate', function (done) {
 });
 
 /** Concatenate js and css files **/
-gulp.task('useref', function (done) {
+gulp.task('useref', ['sass', 'ng_annotate'], function (done) {
   var assets = useref.assets();
   gulp.src('./www/*.html')
       .pipe(assets)
