@@ -13,7 +13,7 @@
             .state('app', {
                 url: "/app",
                 abstract: true,
-                templateUrl: "app/menu/menu.html"
+                templateUrl: "app/layout/menu.html"
             })
         ;
 
