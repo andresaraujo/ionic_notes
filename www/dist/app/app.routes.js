@@ -13,28 +13,8 @@
             .state('app', {
                 url: "/app",
                 abstract: true,
-                templateUrl: "menu/menu.html"
+                templateUrl: "app/menu/menu.html"
             })
-
-            .state('app.notes', {
-                url: '/notes',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'notes/notes.html',
-                        controller: 'NotesController as vm'
-                    }
-                }
-            })
-
-            .state('app.edit', {
-                url: '/edit',
-                views: {
-                    'menuContent': {
-                        templateUrl: 'notes/note.html',
-                    }
-                }
-            })
-
         ;
 
         // if none of the above states are matched, use this as the fallback

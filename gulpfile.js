@@ -36,7 +36,7 @@ gulp.task('sass', function(done) {
 /** Transform html templates into angular templates **/
 gulp.task('templatecache', function (done) {
   gulp.src('./www/app/**/*.html')
-      .pipe(templateCache({standalone:true}))
+      .pipe(templateCache({root: 'app', standalone:true}))
       .pipe(gulp.dest('./www/dist'))
       .on('end', done);
 });

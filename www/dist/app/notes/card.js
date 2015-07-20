@@ -8,7 +8,7 @@
     // @ngInject
     function NoteCardDirective() {
         return {
-            templateUrl: 'notes/card.html',
+            templateUrl: 'app/notes/card.html',
             controllerAs: 'vm',
             bindToController: true,
             scope: {
